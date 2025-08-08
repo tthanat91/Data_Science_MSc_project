@@ -1,0 +1,56 @@
+{
+  "timestamp": "20250808-220853",
+  "n_train": 464,
+  "n_test": 117,
+  "pos_rate_train": 0.4051724137931034,
+  "pos_rate_test": 0.4017094017094017,
+  "features_used": [
+    "sex",
+    "age",
+    "tumor_loc",
+    "ct",
+    "cn",
+    "cm",
+    "staging",
+    "tumor_grade",
+    "cea_level",
+    "neoadj",
+    "tnt",
+    "postpone_neoadj",
+    "sx",
+    "pt",
+    "no_ln",
+    "pn",
+    "margin",
+    "lvi"
+  ],
+  "numeric_features": [
+    "sex",
+    "age",
+    "cea_level",
+    "tnt",
+    "postpone_neoadj",
+    "no_ln",
+    "lvi"
+  ],
+  "categorical_features": [
+    "tumor_loc",
+    "ct",
+    "cn",
+    "cm",
+    "staging",
+    "tumor_grade",
+    "neoadj",
+    "sx",
+    "pt",
+    "pn",
+    "margin"
+  ],
+  "notes": [
+    "Locked to thesis feature set when present",
+    "Pipelines: impute (median/mode) + OHE + scaling; SMOTE-Tomek",
+    "Calibration: isotonic else Platt",
+    "Tuning: 5-fold Stratified CV, scoring=ROC AUC",
+    "Outputs: ROC/PR curves, confusion matrices, importance CSVs"
+  ]
+}

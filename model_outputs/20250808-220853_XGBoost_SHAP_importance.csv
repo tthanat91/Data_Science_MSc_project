@@ -1,0 +1,58 @@
+,0
+cea_level,0.43928313
+pn_Yes,0.41199365
+pn_No,0.34659305
+margin_Negative,0.20922332
+tumor_grade_MD,0.18883021
+age,0.16863003
+no_ln,0.15284313
+sex,0.12476477
+neoadj_0,0.112684116
+lvi,0.10955758
+tumor_loc_Lower,0.09883865
+cm_cM0,0.09754648
+pt_pT0/pCR,0.09575645
+ct_cT3,0.07539392
+neoadj_CRT,0.07388873
+pt_pT2,0.07322912
+tumor_loc_Middle,0.06454322
+cn_cN1,0.06233722
+pt_pT1,0.057713754
+staging_III,0.05573302
+cn_cN2,0.043219034
+ct_cT4b,0.039321035
+tumor_grade_Signet,0.03370461
+neoadj_CMT,0.03370388
+pt_pT3,0.02661788
+cm_cM1,0.024888214
+ct_cT2,0.01917191
+pt_pT4a,0.017476933
+staging_IV,0.015460721
+tnt,0.013442952
+cn_cN0,0.013231465
+tumor_grade_WD,0.011419018
+tumor_grade_Mucinous,0.010116974
+staging_II,0.009353133
+tumor_loc_Upper,0.0068856752
+sx_No,0.006262827
+pn_nan,0.0061863866
+staging_I,0.0048455736
+margin_CRM positive,0.0041358015
+tumor_grade_PD,0.003365578
+ct_cT4a,0.0032525817
+ct_nan,0.0028727695
+pt_pT4b,0.0014805271
+sx_Yes,0.0014160103
+cn_nan,0.0010263609
+cm_nan,0.00100676
+postpone_neoadj,0.00037298317
+pt_nan,0.0
+neoadj_nan,0.0
+neoadj_RT,0.0
+staging_nan,0.0
+margin_Distal positive,0.0
+"margin_Distal positive , CRM positive",0.0
+ct_cT1,0.0
+"margin_Negative , NA",0.0
+"margin_Negative , No",0.0
+margin_nan,0.0

@@ -1,0 +1,58 @@
+,0
+cea_level,524
+age,461
+no_ln,402
+tumor_loc_Lower,136
+tumor_loc_Middle,121
+ct_cT3,120
+sex,102
+neoadj_0,102
+pn_Yes,97
+margin_Negative,95
+tumor_grade_MD,82
+pt_pT2,77
+pn_No,77
+cm_cM0,68
+neoadj_CRT,66
+cn_cN1,61
+cn_cN2,54
+pt_pT0/pCR,54
+tumor_grade_WD,51
+pt_pT3,50
+lvi,44
+ct_cT4b,42
+tumor_grade_Signet,41
+staging_III,35
+staging_II,35
+pt_pT4a,26
+tumor_grade_Mucinous,23
+tnt,23
+cn_cN0,23
+pn_nan,18
+pt_pT1,13
+tumor_loc_Upper,10
+cn_nan,8
+postpone_neoadj,6
+ct_cT4a,6
+pt_pT4b,4
+margin_CRM positive,4
+cm_cM1,3
+ct_nan,2
+ct_cT2,0
+margin_Distal positive,0
+"margin_Negative , NA",0
+"margin_Negative , No",0
+"margin_Distal positive , CRM positive",0
+neoadj_CMT,0
+pt_nan,0
+sx_Yes,0
+sx_No,0
+neoadj_nan,0
+neoadj_RT,0
+ct_cT1,0
+tumor_grade_PD,0
+staging_nan,0
+staging_IV,0
+staging_I,0
+cm_nan,0
+margin_nan,0
