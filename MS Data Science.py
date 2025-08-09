@@ -704,3 +704,132 @@ plt.tight_layout()
 dca_path = os.path.join(OUT_DIR, f"{STAMP}_DecisionCurve_all.png")
 plt.savefig(dca_path, dpi=300); plt.close()
 print(f"[Saved] {dca_path}")
+
+
+# === Table 1 in resultsBasic patient characteristics summary ===
+print("\n=== Basic Characteristics of Study Cohort ===")
+
+# Continuous variables summary (median [IQR])
+cont_vars = ['age', 'no_ln', 'cea_level']  # add any continuous variables you want
+for col in cont_vars:
+    if col in df.columns:
+        median = df[col].median()
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+        print(f"{col}: median = {median:.1f}  [IQR {q1:.1f} – {q3:.1f}]")
+
+# Categorical/binary variables summary (n, %)
+cat_vars = ['sex', 'recur', 'staging', 'tumor_loc', 'tumor_grade', 'neoadj',
+            'tnt', 'postpone_neoadj', 'margin_binary', 'lvi']
+for col in cat_vars:
+    if col in df.columns:
+        counts = df[col].value_counts(dropna=False)
+        total = len(df)
+        print(f"\n{col}:")
+        for level, count in counts.items():
+            pct = (count / total) * 100
+            print(f"  {level}: {count} ({pct:.1f}%)")
+
+# Overall recurrence rate
+if 'recur' in df.columns:
+    rec_rate = df['recur'].mean() * 100
+    print(f"\nOverall recurrence rate: {rec_rate:.1f}%")
+
+# Optional: create a summary table DataFrame for export
+summary_rows = []
+
+# Continuous vars
+for col in cont_vars:
+    if col in df.columns:
+        median = df[col].median()
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+        summary_rows.append({
+            "Variable": col,
+            "Summary": f"{median:.1f} [{q1:.1f} – {q3:.1f}]"
+        })
+
+# Categorical vars
+for col in cat_vars:
+    if col in df.columns:
+        counts = df[col].value_counts(dropna=False)
+        total = len(df)
+        for level, count in counts.items():
+            pct = (count / total) * 100
+            summary_rows.append({
+                "Variable": col,
+                "Summary": f"{level}: {count} ({pct:.1f}%)"
+            })
+
+summary_df = pd.DataFrame(summary_rows)
+summary_path = os.path.join(os.getcwd(), "basic_characteristics.csv")
+summary_df.to_csv(summary_path, index=False)
+print(f"\n[Saved] Basic characteristics table → {summary_path}")
+
+# Table 1 for publication (Total / No recurrence / Recurrence) ===
+def summarize_cont(col):
+    """Return median [IQR] as string for total, no recur, recur."""
+    def fmt(series):
+        return f"{series.median():.1f} [{series.quantile(0.25):.1f}–{series.quantile(0.75):.1f}]"
+    total_str = fmt(df[col].dropna())
+    no_rec_str = fmt(df.loc[df['recur'] == 0, col].dropna())
+    rec_str = fmt(df.loc[df['recur'] == 1, col].dropna())
+    return total_str, no_rec_str, rec_str
+
+def summarize_cat(col):
+    """Return n (%) for each category, separately for total, no recur, recur."""
+    total_n = len(df)
+    no_rec_n = (df['recur'] == 0).sum()
+    rec_n = (df['recur'] == 1).sum()
+
+    rows = []
+    for level in df[col].dropna().unique():
+        total_count = (df[col] == level).sum()
+        no_rec_count = ((df[col] == level) & (df['recur'] == 0)).sum()
+        rec_count = ((df[col] == level) & (df['recur'] == 1)).sum()
+
+        rows.append({
+            "Variable": col if len(rows) == 0 else "",  # only show var name once
+            "Category": level,
+            "Total": f"{total_count} ({total_count/total_n*100:.1f}%)",
+            "No recurrence": f"{no_rec_count} ({no_rec_count/no_rec_n*100:.1f}%)",
+            "Recurrence": f"{rec_count} ({rec_count/rec_n*100:.1f}%)"
+        })
+    return rows
+
+# Variables to include
+cont_vars = ['age', 'no_ln', 'cea_level']  # add/remove as needed
+cat_vars = ['sex', 'staging', 'tumor_loc', 'tumor_grade',
+            'neoadj', 'tnt', 'postpone_neoadj', 'margin_binary', 'lvi']
+
+table1_rows = []
+
+# Continuous variables
+for col in cont_vars:
+    if col in df.columns:
+        total_str, no_rec_str, rec_str = summarize_cont(col)
+        table1_rows.append({
+            "Variable": col,
+            "Category": "",
+            "Total": total_str,
+            "No recurrence": no_rec_str,
+            "Recurrence": rec_str
+        })
+
+# Categorical variables
+for col in cat_vars:
+    if col in df.columns:
+        table1_rows.extend(summarize_cat(col))
+
+# Create DataFrame
+table1_df = pd.DataFrame(table1_rows)
+
+# Save to CSV
+table1_path = os.path.join(os.getcwd(), "table1_characteristics.csv")
+table1_df.to_csv(table1_path, index=False)
+print(f"[Saved] Table 1 characteristics → {table1_path}")
+
+# Display preview
+import pandas as pd
+pd.set_option('display.max_rows', None)
+print(table1_df)
