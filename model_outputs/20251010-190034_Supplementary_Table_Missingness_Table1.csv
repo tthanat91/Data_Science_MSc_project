@@ -1,0 +1,13 @@
+variable,n_missing,denominator,pct_missing
+age,0,581,0.0
+no_ln,45,581,7.7
+cea_level,58,581,10.0
+sex,0,581,0.0
+staging,30,581,5.2
+tumor_loc,0,581,0.0
+tumor_grade,0,581,0.0
+neoadj,6,581,1.0
+tnt,253,581,43.5
+postpone_neoadj,253,581,43.5
+margin,26,581,4.5
+lvi,162,581,27.9
