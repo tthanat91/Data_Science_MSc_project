@@ -16,7 +16,15 @@ import seaborn as sns
 import numpy as np
 print(np.__version__)
 # Load your dataset
-df = pd.read_csv("/Users/THANAT/Documents/Research Projects/MSc project/IS/Data/RC.csv")
+# The patient dataset is NOT shared (confidential, ethics approval). Place your own
+# file at data/RC.csv (same variable names as Table 3 of the thesis) before running.
+import os
+DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "RC.csv")
+if not os.path.exists(DATA_PATH):
+    raise FileNotFoundError(
+        f"Dataset not found at {DATA_PATH}. The original data are confidential and not "
+        "included in this repository; see README 'Data availability'.")
+df = pd.read_csv(DATA_PATH)
 df = df.dropna(axis=1, how='all')  # Drop fully empty columns
 
 # === Step 1: Missing Data Percentage ===

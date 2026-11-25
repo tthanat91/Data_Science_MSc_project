@@ -1,0 +1,11 @@
+# Python 3.10+
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+imbalanced-learn
+# optional (script skips them if not installed)
+xgboost
+lightgbm
+shap

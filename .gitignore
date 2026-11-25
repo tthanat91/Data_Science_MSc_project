@@ -1,0 +1,18 @@
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Confidential patient data: never commit
+data/
+*.xlsx
+*.sav
+*.dta
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
